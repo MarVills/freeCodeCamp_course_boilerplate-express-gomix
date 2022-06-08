@@ -11,19 +11,18 @@ require('dotenv').config();
 // });
 // app.use("/public", express.static(__dirname + "/public"));
 
-app.get("/json", function(req, res) {
- console.log("log"process.env.MESSAGE_STYLE);
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-  // response = "Hello World".toUpperCase();
-     res.json(
-       {"message": "HELLO JSON"}
-  )
-} else {
-  // response = "Hello World";
-     res.json(
-        {"message": "Hello json"}
-  )
-}
+app.get("/json", (req, res) => {
+  const mySecret = process.env['MESSAGE_STYLE'];
+  var jsonResponse = {"message": "Hello json"};
+  var message = jsonResponse.message.toString();
+  
+  if (mySecret === "uppercase") {
+    jsonResponse.message = message.toUpperCase();
+    // message = message.toUpperCase()
+    // console.log(jsonResponse.message);
+  }
+  res.json(jsonResponse);
+
 });
 
 
