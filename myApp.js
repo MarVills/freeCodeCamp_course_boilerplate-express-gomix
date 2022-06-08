@@ -3,9 +3,13 @@ let app = express();
 require('dotenv').config();
 // console.log("Hello World");
 
+app.use(function(req, res, next){
+  console.log(req.method +" "+ req.path +" - "+ req.ip );
+  next();
+});
+
+
 // absolutePath =  __dirname + "/views/index.html";
-
-
 // app.get("/", function(express, app) {
 //   app.sendFile(absolutePath);
 // });
