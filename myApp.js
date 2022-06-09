@@ -31,6 +31,25 @@ app.get("/json", (req, res) => {
 
 
 
+const middleware = (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+};
+
+app.get("/now", middleware, (req, res) => {
+  res.send({
+    time: req.time
+  });
+});
+
+app.get("/:word/echo", (req, res) => {
+  const { word } = req.params;
+  res.json({
+    echo: word
+  });
+});
+
+
 
 
 
