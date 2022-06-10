@@ -2,12 +2,21 @@ let express = require('express');
 let app = express();
 require('dotenv').config();
 // console.log("Hello World");
+var bodyParser = require("body-parser");
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// app.get("body-parsed-info", function(req, res){
+ 
+// });
+
 
 app.use(function(req, res, next){
   console.log(req.method +" "+ req.path +" - "+ req.ip );
   next();
 });
-
 
 // absolutePath =  __dirname + "/views/index.html";
 // app.get("/", function(express, app) {
@@ -59,6 +68,14 @@ app.get("/name", function(req, res) {
     name: req.query.first + " " + req.query.last
   });
 });
+
+
+
+
+
+
+
+
 
 
 
